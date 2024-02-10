@@ -68,6 +68,10 @@ footer{
     background-repeat: no-repeat;
 }
 
+.ranked{
+    background-image: url('../../assets/border-ui-ranked.png');
+}
+
 .footer-box .footer-text{
     display: flex;
     justify-content: center;
@@ -152,4 +156,59 @@ footer{
     color: #b59458;
     font-size: 11pt;
     text-align: center;
+}
+
+.ranks{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.rank{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+
+.rank img{
+    width: 10rem;
+}
+
+.rank h4{
+    font-weight: 400;
+    color: #ba241f;
+}
+.rank span{
+    margin-left: 0;
+    color: #b59458;
+    font-size: 11pt;
+    text-align: center;
+}
+
+
+.rank-side{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1rem;
+}
+
+.rank-side img{
+    width: 7rem;
+}
+
+.rank-side h4{
+    font-size: 10pt;
+    font-weight: 400;
+    color: #ba241f;
+}
+.rank-side span{
+    font-size: 10pt;
+    margin-left: 0;
+    color: #b59458;
+    font-size: 11pt;
+}
+.rank-side p{
+    font-size: 10pt;
 }

@@ -10,4 +10,7 @@ export class PerfilComponent {
   iconUrl:string = "https://ddragon.leagueoflegends.com/cdn/14.3.1/img/profileicon/588.png"
   urlChampion:string = "https://ddragon.leagueoflegends.com/cdn/14.3.1/img/champion/Aatrox.png"
   championName:string = "Aatrox"
+  urlImgRank:string= "../../assets/tier-icons/tier-icons/diamond_i.png"
+  elo:string = "Diamante I"
+  pdls:string = "87 PDL"
 }
