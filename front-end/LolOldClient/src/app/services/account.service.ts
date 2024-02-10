@@ -25,5 +25,11 @@ export class AccountService{
     return this.http.get<any>(url);
   }
 
+  public getRankByPiuuId(piuuid: string){
+    var url = this.baseUrl + `GetAccountRankByPiuuid/${piuuid}`;
+    
+    return this.http.get<any>(url);
+  }
+
 }
 
