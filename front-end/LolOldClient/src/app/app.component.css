@@ -1,0 +1,9 @@
+div{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../assets/background.png');
+    /* Outras propriedades de background podem ser adicionadas, como tamanho, posição, repetição, etc. */
+    background-size: cover; /* Para cobrir todo o elemento */
+    background-position: center; /* Posiciona a imagem no centro */
+    background-repeat: no-repeat;
+}

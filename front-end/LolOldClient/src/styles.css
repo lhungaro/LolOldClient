@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Isso faz com que o padding e a borda sejam considerados no cálculo do tamanho total do elemento */
+    font-family: 'Noto Serif';
+}
+
+/* Zerando estilos de lista */
+ul, ol {
+    list-style: none;
+}
+
+/* Zerando estilos de links */
+a {
+    text-decoration: none;
+    color: inherit; /* Herda a cor do texto do elemento pai */
+}
