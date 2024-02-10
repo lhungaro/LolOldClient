@@ -8,6 +8,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { LigasComponent } from './ligas/ligas.component';
 import { HistoricoComponent } from './historico/historico.component';
 import { CampeoesComponent } from './campeoes/campeoes.component';
+import { AccountService } from './services/account.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,14 @@ import { CampeoesComponent } from './campeoes/campeoes.component';
     PerfilComponent,
     LigasComponent,
     HistoricoComponent,
-    CampeoesComponent
+    CampeoesComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [AccountService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
