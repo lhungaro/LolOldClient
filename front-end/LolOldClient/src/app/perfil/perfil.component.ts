@@ -6,6 +6,7 @@ import { Rank } from '../models/rank';
 import { QueueTypeEnum } from '../helpers/queueTypeEnum';
 import { RankEnum } from '../helpers/rankEnum';
 import { ICON_PATHS, Tier, rankIconMap } from '../helpers/icons.config';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-perfil',
@@ -21,6 +22,9 @@ export class PerfilComponent {
   championName1:string = ""
   championName2:string = ""
   championName3:string = ""
+  championPoints1:string = ""
+  championPoints2:string = ""
+  championPoints3:string = ""
   urlImgRankSolo:string= "../../assets/tier-icons/tier-icons/diamond_i.png"
   urlImgRankTFT:string= "../../assets/tier-icons/tier-icons/diamond_i.png"
   urlImgRankFlex:string= "../../assets/tier-icons/tier-icons/diamond_i.png"
@@ -31,19 +35,20 @@ export class PerfilComponent {
   masterys: Mastery[] = [];
   ranks: Rank[] = [];
   rankSolo: Rank = {
-    queueType: '',
-    tier: '',
-    rank: '',
-    leaguePoints: '',
+    queueType: 'Ranked Solo/Duo',
+    tier: 'Diamond',
+    rank: 'II',
+    leaguePoints: '50',
   };
   rankFlex: Rank = {
-    queueType: '',
-    tier: '',
-    rank: '',
-    leaguePoints: '',
+    queueType: 'Ranked Solo/Duo',
+    tier: 'Diamond',
+    rank: 'II',
+    leaguePoints: '50',
   };
 
-  constructor(private accountService:AccountService) { }
+  constructor(private accountService:AccountService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(){
     // this.GetUser();
@@ -51,7 +56,7 @@ export class PerfilComponent {
 
   GetUser(){
     console.log(this.username);
-    
+    this.spinner.show();
     if(this.username){
 
       this.accountService.getIdAccountByNameBr(this.username).subscribe({
@@ -88,6 +93,7 @@ export class PerfilComponent {
         },
          complete: () => {
           this.populaMasterys()
+          this.spinner.hide();
         }
       });
     }
@@ -125,6 +131,9 @@ export class PerfilComponent {
     this.urlChampion1 = this.mastery[0].champUrlImg ?? "";
     this.urlChampion2 = this.mastery[1].champUrlImg ?? "";
     this.urlChampion3 = this.mastery[2].champUrlImg ?? "";
+    this.championPoints1 = this.formatarNumero(this.mastery[0].championPoints ?? "")
+    this.championPoints2 = this.formatarNumero(this.mastery[1].championPoints ?? "")
+    this.championPoints3 = this.formatarNumero(this.mastery[2].championPoints ?? "")
   }
 
   populaRanks(){
@@ -374,13 +383,19 @@ export class PerfilComponent {
     
   }
 
-  isTier(value: string): value is Tier {
-    return [
-      'bronzeI', 'bronzeII', 'bronzeIII', 'bronzeIV', 'bronzeV',
-      'silverI', 'silverII', 'silverIII', 'silverIV', 'silverV',
-      'goldI', 'goldII', 'goldIII', 'goldIV', 'goldV',
-      'platinumI', 'platinumII', 'platinumIII', 'platinumIV', 'platinumV',
-      'diamondI', 'diamondII', 'diamondIII', 'diamondIV', 'diamondV'
-    ].includes(value);
+  formatarNumero(points: string): string {
+
+    if(points == "")
+      return points;
+
+    let numero = parseInt(points);
+
+    if (numero < 1000) {
+        return numero.toString();
+    } else if (numero < 1000000) {
+        return (numero / 1000).toFixed(1).replace(/\.?0*$/, '') + ' k';
+    } else {
+        return (numero / 1000000).toFixed(3).replace(/\.?0*$/, '') + ' kk';
+    }
   }
 }

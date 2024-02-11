@@ -10,7 +10,8 @@ import { HistoricoComponent } from './historico/historico.component';
 import { CampeoesComponent } from './campeoes/campeoes.component';
 import { AccountService } from './services/account.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule,
+    BrowserAnimationsModule
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]
