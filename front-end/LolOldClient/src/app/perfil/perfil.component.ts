@@ -14,7 +14,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent {
-  username:string = "YODA#BR1";
+  username:string = "Ephemerus#BR1";
   iconUrl:string = "https://ddragon.leagueoflegends.com/cdn/14.3.1/img/profileicon/588.png"
   urlChampion1:string = ""
   urlChampion2:string = ""
@@ -51,7 +51,7 @@ export class PerfilComponent {
     private spinner: NgxSpinnerService) { }
 
   ngOnInit(){
-    // this.GetUser();
+    this.GetUser();
   }
 
   GetUser(){

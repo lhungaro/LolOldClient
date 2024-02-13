@@ -31,5 +31,11 @@ export class AccountService{
     return this.http.get<any>(url);
   }
 
+  public getChampions(){
+    var url = this.baseUrl + `GetChampions`;
+    
+    return this.http.get<any>(url);
+  }
+
 }
 
