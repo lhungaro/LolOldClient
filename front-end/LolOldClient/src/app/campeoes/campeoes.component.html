@@ -39,10 +39,15 @@
   <div class="buscar" (click)="carregarCampeoes()"></div>
 
   <div class="grid-container">
-    <div *ngFor="let champion of champions" class="grid-item">
+    <div *ngFor="let champion of mastery" class="grid-item">
       <div class="champ-container">
-        <img [src]="champion.imageUrl">
-        {{champion.name}}
+        <img [src]="champion.champUrlImg">
+        {{champion.champName}}
+        <p *ngIf="champion.chestGranted == 'true'">Tem bau</p>
+        <div *ngIf="champion.championLevel == '7'"><img src="https://ddragon.leagueoflegends.com/cdn/14.3.1/img/profileicon/588.png" alt=""></div>
+        <p *ngIf="champion.championLevel == '6'">Maestria 6</p>
+        <p *ngIf="champion.championLevel == '5'">Maestria 5</p>
+        <p *ngIf="champion.championLevel == '4'">Maestria 4</p>
       </div>
     </div>
   </div>

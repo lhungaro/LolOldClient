@@ -137,7 +137,6 @@ export class PerfilComponent {
   }
 
   populaRanks(){
-    debugger
     this.ranks.forEach((rank: Rank )=>{
       if(rank.queueType == QueueTypeEnum.Solo)
         this.rankSolo = rank;
