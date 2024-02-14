@@ -1,6 +1,48 @@
-<div>
-    <div *ngFor="let champion of champions">
-        <img [src]="champion.imageUrl" alt="">
-        <p>{{ champion.name }}</p>
+<main>
+  <div class="cabecalho-campeoes">
+    <input type="text" placeholder="Buscar Campeões" />
+
+    <div>
+      <label for="Ordem">Ordem</label>
+      <select id="Ordem" name="Ordem">
+        <option value="Alfabética">Alfabética</option>
+        <option value="Maestria">Maestria</option>
+        <option value="WinRate">WinRate</option>
+        <option value="Bau-disponivel">Baú dispolnivel</option>
+      </select>
     </div>
-</div>
+
+    <div>
+      <label for="Funcao">Função primaria</label>
+      <select id="Funcao" name="Funcao">
+        <option value="Todos">Todos</option>
+        <option value="Tank">Tank</option>
+        <option value="Mago">Mago</option>
+        <option value="Assassino">Assassino</option>
+        <option value="Suporte">Suporte</option>
+        <option value="Guerreiro">Guerreiro</option>
+        <option value="Atirador">Atirador</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="Disponibilidade">Disponibilidade</label>
+      <select id="Disponibilidade" name="Disponibilidade">
+        <option value="Ja-obtido">Já obtido</option>
+        <option value="Nao-obtido">Não obtido</option>
+        <option value="Disponivel">Disponivel</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="buscar">
+    <div *ngFor="let group of chunk(champions ,5)"  (click)="GetChampions()" class="campeoes">
+      <div *ngFor="let champion of champions" class="mostrar-campeao">
+      {{champion.name}}
+      <img [src]="champion.imageUrl">
+      </div>
+    </div>
+  </div>
+
+</main>

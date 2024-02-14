@@ -1,0 +1,60 @@
+main{
+  width: 100%;
+  height: 100%;
+}
+
+.cabecalho-campeoes{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2.5rem;
+  background-image: url(../../assets/background-campeoes.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+main div {
+  padding: 1rem 0.75rem 1rem 1.25rem;
+}
+
+main div div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main div div label{
+  color: #55331a;
+  margin-right: 5px;
+}
+
+main div div select{
+  border: none;
+}
+
+#Ordem , #Funcao ,#Disponibilidade{
+  background-image: linear-gradient(to bottom, #f8faf9, #d2d0c5);
+  border: none;
+
+}
+
+.campeoes{
+  width: 10rem;
+  height: auto;
+
+}
+
+.buscar{
+  width: 3rem;
+  height: 3rem;
+  background-color: #55331a;
+}
+
+.mostrar-campeao{
+  display: grid;
+  grid-template-columns: auto auto auto auto auto;
+  grid-template-rows: auto auto auto;
+  width: 100vw;
+  height: auto;
+}

@@ -10,7 +10,17 @@ import { Champion } from '../models/champion';
 })
 export class CampeoesComponent {
 
+
   champions: Champion[] = [];
+
+  // Função para dividir o array em grupos de tamanho 'size'
+  chunk(array:any, size:any) {
+    const result = [];
+    for (let i = 0; i < array.length; i += size) {
+      result.push(array.slice(i, i + size));
+    }
+    return result;
+  }
 
   constructor(
     private accountService: AccountService,
@@ -19,15 +29,15 @@ export class CampeoesComponent {
   ngOnInit(){
     this.GetChampions();
 
-    
+
   }
 
   teste:string = "../../assets/tier-icons/tier-icons/diamond_i.png"
 
-  
+
   GetChampions(){
     this.spinner.show();
-  
+
     this.accountService.getChampions().subscribe({
       next: (_account:Champion[]) => {
         this.champions = _account
@@ -40,7 +50,7 @@ export class CampeoesComponent {
         this.spinner.hide();
         this.champions.forEach((a) => {
           console.log(a.image.full);
-          
+
         });
       }
     });
