@@ -16,7 +16,16 @@ export class CampeoesComponent {
     private accountService: AccountService,
     private spinner: NgxSpinnerService) {  }
 
-  GetUser(){
+  ngOnInit(){
+    this.GetChampions();
+
+    
+  }
+
+  teste:string = "../../assets/tier-icons/tier-icons/diamond_i.png"
+
+  
+  GetChampions(){
     this.spinner.show();
   
     this.accountService.getChampions().subscribe({
@@ -29,6 +38,10 @@ export class CampeoesComponent {
       },
         complete: () => {
         this.spinner.hide();
+        this.champions.forEach((a) => {
+          console.log(a.image.full);
+          
+        });
       }
     });
   }

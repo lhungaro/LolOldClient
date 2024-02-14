@@ -11,6 +11,7 @@ export interface Champion {
     tags : string[];
     partype : string;
     stats : ChampionStats;
+    imageUrl : string;
 }
 
 interface ChampionInfo

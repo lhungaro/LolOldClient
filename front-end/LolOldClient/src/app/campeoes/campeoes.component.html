@@ -1,1 +1,6 @@
-<p>campeoes works!</p>
+<div>
+    <div *ngFor="let champion of champions">
+        <img [src]="champion.imageUrl" alt="">
+        <p>{{ champion.name }}</p>
+    </div>
+</div>
