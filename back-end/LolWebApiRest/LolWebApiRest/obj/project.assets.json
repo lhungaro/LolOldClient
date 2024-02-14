@@ -273,11 +273,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projetos\\LolProjeto\\LoLWebSite\\BackEnd\\LolWebApiRest\\LolWebApiRest\\LolWebApiRest.csproj",
+      "projectUniqueName": "E:\\Projetos\\LolProjeto\\LolOldClient\\LolOldClient\\back-end\\LolWebApiRest\\LolWebApiRest\\LolWebApiRest.csproj",
       "projectName": "LolWebApiRest",
-      "projectPath": "E:\\Projetos\\LolProjeto\\LoLWebSite\\BackEnd\\LolWebApiRest\\LolWebApiRest\\LolWebApiRest.csproj",
+      "projectPath": "E:\\Projetos\\LolProjeto\\LolOldClient\\LolOldClient\\back-end\\LolWebApiRest\\LolWebApiRest\\LolWebApiRest.csproj",
       "packagesPath": "C:\\Users\\hunga\\.nuget\\packages\\",
-      "outputPath": "E:\\Projetos\\LolProjeto\\LoLWebSite\\BackEnd\\LolWebApiRest\\LolWebApiRest\\obj\\",
+      "outputPath": "E:\\Projetos\\LolProjeto\\LolOldClient\\LolOldClient\\back-end\\LolWebApiRest\\LolWebApiRest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\hunga\\AppData\\Roaming\\NuGet\\NuGet.Config",

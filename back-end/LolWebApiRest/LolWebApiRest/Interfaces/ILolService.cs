@@ -1,4 +1,5 @@
 ﻿using LolWebAPI.Models;
+using System.Text.RegularExpressions;
 
 namespace LolWebApiRest.Interfaces
 {
@@ -8,6 +9,8 @@ namespace LolWebApiRest.Interfaces
         Task<List<Mastery>> GetMasteryAsync(string piuuid);
         Task<AccountInformations> GetAccountInformations(string piuuid);
         Task<List<Rank>> GetAccountRankByPiuuid(string piuuid);
-        
+        Task<List<Matche>> GetMatchesInformationsAsync(string piuuid);
+        Task<List<Champion>> GetChampionsAsync();
+
     }
 }

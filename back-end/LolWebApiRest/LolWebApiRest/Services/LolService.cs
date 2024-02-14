@@ -1,8 +1,10 @@
 ﻿using LolWebAPI.Models;
 using LolWebApiRest.Interfaces;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileSystemGlobbing;
 using Newtonsoft.Json;
 using System;
+using System.Text.RegularExpressions;
 using static System.Net.WebRequestMethods;
 
 namespace LolWebAPI.Services
@@ -169,7 +171,7 @@ namespace LolWebAPI.Services
                             string ChampionListresponseBody = await responseChampionList.Content.ReadAsStringAsync();
                             ChampionList championList = JsonConvert.DeserializeObject<ChampionList>(ChampionListresponseBody);
                             List<Champion> champions = championList.data.Values.ToList();
-                            
+
                             foreach (var mastery in masterys)
                             {
                                 var champ = champions.FirstOrDefault(c => c.key == mastery.championId);
@@ -177,6 +179,7 @@ namespace LolWebAPI.Services
                                 {
                                     mastery.ChampName = champ.name;
                                     mastery.ChampUrlImg = _urlChampionsImage + champ.image.full;
+                                    mastery.Tags = champ.tags;
                                 }
                             }
                         }
@@ -199,7 +202,6 @@ namespace LolWebAPI.Services
                 }
             }
 
-            // Return null if there is an issue or if username is empty
             return null;
         }
 
@@ -207,6 +209,115 @@ namespace LolWebAPI.Services
         {
             accountInformations.profileIconUrl = _urlIconsImage + accountInformations.profileIconId + ".png"; 
         }
+
+        public async Task<List<Matche>> GetMatchesInformationsAsync(string puuid)
+        {
+            if (!string.IsNullOrEmpty(puuid))
+            {
+                try
+                {
+                    //Consultando o ID das partidas 
+                    string url = $"{_baseUrl}/lol/match/v5/matches/by-puuid/{puuid}/ids?api_key={_apiKey}";
+
+
+                    HttpResponseMessage response = await httpClient.GetAsync(url);
+                    List<string> matchesIds = new List<string>();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string responseBody = await response.Content.ReadAsStringAsync();
+
+                        matchesIds = JsonConvert.DeserializeObject<List<string>>(responseBody);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Failed to get user. Status code: {response.StatusCode}");
+                    }
+
+                    //Buscando informações de cada partida separadamente
+
+                    return await GetMatchesInformationsByMatchId(matchesIds);
+
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error: {ex.Message}");
+                }
+            }
+
+            // Return null if there is an issue or if username is empty
+            return null;
+        }
+
+        public async Task<List<Matche>> GetMatchesInformationsByMatchId(List<string> matchesIds)
+        {
+            List<Task<Matche>> matchTasks = new List<Task<Matche>>();
+
+            foreach (var matchId in matchesIds)
+            {
+                matchTasks.Add(GetMatchInformationAsync(matchId));
+            }
+
+            await Task.WhenAll(matchTasks);
+
+            var matches = matchTasks.Select(t => t.Result).ToList();
+
+            return matches; 
+        }
+
+        private async Task<Matche> GetMatchInformationAsync(string matchId)
+        {
+            string urlMatch = $"{_baseUrl}/lol/match/v5/matches/{matchId}?api_key={_apiKey}";
+            HttpResponseMessage responseMatch = await httpClient.GetAsync(urlMatch);
+
+            if (responseMatch.IsSuccessStatusCode)
+            {
+                string responseBodyMatch = await responseMatch.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<Matche>(responseBodyMatch);
+            }
+            else
+            {
+                Console.WriteLine($"Failed to get match. Status code: {responseMatch.StatusCode}");
+                return null;
+            }
+        }
+
+        public async Task<List<Champion>> GetChampionsAsync()
+        {
+            try
+            {
+                string url = _urlChampionsList;
+
+                HttpResponseMessage response = await httpClient.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string responseBody = await response.Content.ReadAsStringAsync();
+
+                    ChampionList championList = JsonConvert.DeserializeObject<ChampionList>(responseBody);
+                    List<Champion> champions = championList.data.Values.ToList();
+
+                    foreach (var champ in champions)
+                    {
+                            champ.imageUrl = _urlChampionsImage + champ.image.full;
+                    }
+                    return champions;
+                }
+                else
+                {
+                    Console.WriteLine($"Failed to get user. Status code: {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error: {ex.Message}");
+            }
+
+            // Return null if there is an issue or if username is empty
+            return null;
+        }
+        
+
 
     }
 
