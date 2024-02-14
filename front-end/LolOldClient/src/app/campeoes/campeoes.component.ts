@@ -27,13 +27,11 @@ export class CampeoesComponent {
     private spinner: NgxSpinnerService) {  }
 
   ngOnInit(){
-    this.GetChampions();
-
-
+    //this.GetChampions();
   }
-
-  teste:string = "../../assets/tier-icons/tier-icons/diamond_i.png"
-
+  carregarCampeoes(){
+    this.GetChampions();
+  }
 
   GetChampions(){
     this.spinner.show();

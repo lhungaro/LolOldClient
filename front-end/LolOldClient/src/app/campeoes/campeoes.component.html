@@ -36,11 +36,13 @@
 
   </div>
 
-  <div class="buscar">
-    <div *ngFor="let group of chunk(champions ,5)"  (click)="GetChampions()" class="campeoes">
-      <div *ngFor="let champion of champions" class="mostrar-campeao">
-      {{champion.name}}
-      <img [src]="champion.imageUrl">
+  <div class="buscar" (click)="carregarCampeoes()"></div>
+
+  <div class="grid-container">
+    <div *ngFor="let champion of champions" class="grid-item">
+      <div class="champ-container">
+        <img [src]="champion.imageUrl">
+        {{champion.name}}
       </div>
     </div>
   </div>
