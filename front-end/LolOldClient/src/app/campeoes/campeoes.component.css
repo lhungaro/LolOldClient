@@ -15,10 +15,10 @@ main{
   padding: 1rem 0.75rem 1rem 1.25rem;
 }
 
-main div {
+.buscar main div {
 }
 
-main div div{
+.buscar main div div{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -55,31 +55,52 @@ main div div select{
 .grid-container {
   display: grid;
   grid-template-columns: repeat(10, 1fr); /* 10 colunas igualmente espaçadas */
-  gap: 10px; /* espaçamento entre os itens */
+  gap: 2px; /* espaçamento entre os itens */
   overflow-y: scroll;
   max-height: 80%;
   overflow-x: hidden;
+  padding: 2rem;
 }
 
 .grid-item {
   display: flex; /* Para manter o conteúdo alinhado dentro das células */
   align-items: center; /* Alinha o conteúdo verticalmente */
+  justify-content: center;
 }
 
 .imagem-campeao {
   position: relative;
-  width: 3rem;
-  max-width: 100%;
+  width: 4rem;
   height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.maestria-background {
-  position: static;
+.champ{
+    width: 4rem;
+    height: 4rem;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 2.6rem;
+}
+
+.champName{
+  font-size: 8pt;
+  font-weight: 500;
+  color: #55331a;
+  margin-bottom: 1rem;
+}
+
+.maestria-background{
   width: 3rem;
   height: 5rem;
   background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o contêiner */
   background-position: center; /* Posiciona a imagem no centro*/
   max-height: 80%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 /* .imagem-maestria{
   position: absolute;
@@ -91,7 +112,6 @@ main div div select{
 } */
 
 .maestria-7 {
-  position: fixed;
   background-image: url('../../assets/Maestria/borda-maestria7.png');
 }
 

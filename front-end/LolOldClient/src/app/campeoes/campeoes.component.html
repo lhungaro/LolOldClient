@@ -41,18 +41,16 @@
   <div class="grid-container">
     <div *ngFor="let champion of mastery"  class="grid-item">
       <div class="champ-container">
-        <img class="imagem-campeao" [src]="champion.champUrlImg">
-        <div *ngIf="champion.chestGranted == 'true'"></div>
-        <!-- <div *ngIf="champion.championLevel == '7'"><img class="imagem-maestria" src="../../assets/Maestria/borda-maestria7.png" alt=""></div>
-        <div *ngIf="champion.championLevel == '6'"><img class="imagem-maestria" src="../../assets/Maestria/borda-maestria6.png" alt=""></div>
-        <div *ngIf="champion.championLevel == '5'"><img class="imagem-maestria" src="../../assets/Maestria/borda-maestria5.png" alt=""></div>
-        <div *ngIf="champion.championLevel == '4'"><img class="imagem-maestria" src="../../assets/Maestria/borda-maestria4.png" alt=""></div>
-        <div *ngIf="champion.championLevel == '3'"><img class="imagem-maestria" src="../../assets/Maestria/borda-maestria3.png" alt=""></div>
-        <div *ngIf="champion.championLevel == '2'"><img class="imagem-maestria" src="../../assets/Maestria/borda-maestria2.png" alt=""></div>
-        <div *ngIf="champion.championLevel == '1'"><img class="imagem-maestria" src="../../assets/Maestria/borda-maestria1.png" alt=""></div>
-        <div *ngIf="champion.championLevel == '0'"><img class="imagem-maestria" src="../../assets/Maestria/borda-maestria.png" alt=""></div> -->
-        <div class="maestria-background" [ngClass]="'maestria-' + champion.championLevel"></div>
-        {{champion.champName}}
+        <div class="imagem-campeao">
+          <div class="champ" [ngStyle]="{ 'background-image': 'url(' + champion.champUrlImg + ')' }">
+            <img class="imagem-campeao" src="../../assets/Maestria/borda-maestria6.png">
+            <!-- arrumar borda do bau para ficar emcima da borda da maestria -->
+            <!-- <img class="imagem-campeao" src="../../assets/Maestria/borda-com-bau.png"> -->
+          </div>
+        </div>
+        <div class="champName">
+          {{champion.champName}}
+        </div>
       </div>
     </div>
   </div>
