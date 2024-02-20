@@ -66,8 +66,61 @@ main div div select{
   align-items: center; /* Alinha o conteúdo verticalmente */
 }
 
-.champ-container img {
+.imagem-campeao {
+  position: relative;
   width: 3rem;
   max-width: 100%;
   height: auto;
 }
+
+.maestria-background {
+  position: static;
+  width: 3rem;
+  height: 5rem;
+  background-size: cover; /* Ajusta o tamanho da imagem para cobrir todo o contêiner */
+  background-position: center; /* Posiciona a imagem no centro*/
+  max-height: 80%;
+}
+/* .imagem-maestria{
+  position: absolute;
+  width: 3rem;
+  top: auto;
+  left: auto;
+  z-index: 1;
+
+} */
+
+.maestria-7 {
+  position: fixed;
+  background-image: url('../../assets/Maestria/borda-maestria7.png');
+}
+
+.maestria-6 {
+  background-image: url('../../assets/Maestria/borda-maestria6.png');
+}
+
+.maestria-5 {
+  background-image: url('../../assets/Maestria/borda-maestria5.png');
+}
+
+.maestria-4 {
+  background-image: url('../../assets/Maestria/borda-maestria4.png');
+}
+
+.maestria-3 {
+  background-image: url('../../assets/Maestria/borda-maestria3.png');
+}
+
+.maestria-2 {
+  background-image: url('../../assets/Maestria/borda-maestria2.png');
+}
+
+.maestria-1 {
+  background-image: url('../../assets/Maestria/borda-maestria1.png');
+}
+
+.maestria-0 {
+  background-image: url('../../assets/Maestria/borda-maestria.png');
+}
+
+

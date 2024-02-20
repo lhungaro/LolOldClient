@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { AccountService } from '../services/account.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Champion } from '../models/champion';
 import { Mastery } from '../models/mastery';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-campeoes',
@@ -10,6 +12,14 @@ import { Mastery } from '../models/mastery';
   styleUrls: ['./campeoes.component.css']
 })
 export class CampeoesComponent {
+
+  ordenacao: string = 'Alfabética';
+
+  ordenarOpcoes(){
+    if (this.ordenacao === 'Alfabética'){
+      this.champions.sort();
+    }
+  }
 
   puuid: string = '5-9UAP0WP_BqWLHurxIjj1PprptYifhFeHfhWL5AHzQDJ4KiGgaspRtz8Zv7rf0ItIR_Zi2aBkH8zQ'
   champions: Champion[] = [];
@@ -28,8 +38,8 @@ export class CampeoesComponent {
     private accountService: AccountService,
     private spinner: NgxSpinnerService) {  }
 
-  ngOnInit(){
-    //this.GetChampions();
+  ngOnInit() {
+
   }
   carregarCampeoes(){
     // this.GetChampions();
@@ -75,3 +85,4 @@ export class CampeoesComponent {
   }
 
 }
+
