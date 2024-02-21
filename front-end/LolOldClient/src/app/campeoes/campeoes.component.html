@@ -1,6 +1,6 @@
 <main>
   <div class="cabecalho-campeoes">
-    <input type="text" placeholder="Buscar Campeões" />
+    <input type="text" placeholder="Buscar Campeões" [(ngModel)]="filtroChamp" />
 
     <div>
       <label for="Ordem">Ordem</label>
@@ -39,7 +39,7 @@
   <div class="buscar" (click)="carregarCampeoes()"></div>
 
   <div class="grid-container">
-    <div *ngFor="let champion of mastery"  class="grid-item">
+    <div *ngFor="let champion of filtrarLista()"  class="grid-item">
       <div class="champ-container">
         <div class="imagem-campeao">
           <div class="champ" [ngStyle]="{ 'background-image': 'url(' + champion.champUrlImg + ')' }">

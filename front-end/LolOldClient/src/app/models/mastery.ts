@@ -10,7 +10,7 @@ export interface Mastery {
     chestGranted? : string 
     tokensEarned? : string 
     summonerId? : string 
-    champName? : string 
+    champName : string 
     champUrlImg? : string   
 
 }

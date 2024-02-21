@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 export class CampeoesComponent {
 
   ordenacao: string = 'Alfabética';
+  filtroChamp: any = "";
 
   ordenarOpcoes(){
     if (this.ordenacao === 'Alfabética'){
@@ -44,6 +45,14 @@ export class CampeoesComponent {
   carregarCampeoes(){
     // this.GetChampions();
     this.GetMasterys();
+  }
+
+  filtrarLista() {
+    if(this.filtroChamp != ""){
+      return this.mastery.filter(item => item.champName.toLowerCase().includes(this.filtroChamp.toLowerCase()));
+    }else{
+      return this.mastery;
+    }
   }
 
   GetChampions(){
