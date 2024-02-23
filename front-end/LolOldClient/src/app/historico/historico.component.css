@@ -1,0 +1,78 @@
+main{
+    width: 100%;
+    height: 100%;
+}
+
+.items img{
+    width: 2.5rem;
+    border-radius: 3px;
+    margin-right: 1px;
+}
+
+.match-wrapper{
+    display: flex;
+    align-items: center;
+    background-color: rgba(243,238,223,1);
+    height: 18%;
+    border: solid 1px #c5a758;
+}
+
+.status-wrapper{
+    height: 100%;
+    width: 0.6rem;
+    margin-right: 1rem;
+}
+
+.defeat{
+    background-color: red;
+}
+
+.victory{
+    background-color: green;
+}
+
+.participant-wrapper{
+    display: flex;
+}
+
+.match-informations-wrapper{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.participant-wrapper img{
+    margin-right: 0.1rem;
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+.summoners-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.summoners-wrapper img{
+    width: 1.7rem;
+    height: 1.7rem;
+}
+
+.summoners-wrapper img:first-child{
+    margin-bottom: 0.1rem;
+}
+
+.match-time-wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+    align-items: center;
+}
+
+.farm-wrapper{
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.kda-wrapper{
+    margin-left: 1rem;
+}

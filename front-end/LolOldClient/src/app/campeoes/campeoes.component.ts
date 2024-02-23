@@ -68,10 +68,6 @@ export class CampeoesComponent {
       },
         complete: () => {
         this.spinner.hide();
-        this.champions.forEach((a) => {
-          console.log(a.image.full);
-
-        });
       }
     });
   }

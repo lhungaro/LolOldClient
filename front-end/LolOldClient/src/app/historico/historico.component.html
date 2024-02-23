@@ -1,1 +1,39 @@
-<p>historico works!</p>
+<main>
+    <div class="match-wrapper">
+        <div class="status-wrapper" [ngClass]="{ 'victory': match.info.participants[0].win, 'defeat': !match.info.participants[0].win}"></div>
+
+        <div class="participant-wrapper">
+           <img src="{{match.info.participants[0].championImage}}" alt=""> 
+           <div class="summoners-wrapper">
+            <img src="{{match.info.participants[0].summoner1Key}}" alt=""> 
+            <img src="{{match.info.participants[0].summoner2Key}}" alt=""> 
+           </div>
+        </div>
+
+        <div class="match-informations-wrapper">
+            <h4>{{verificaSeStatus(match.info.participants[0].win)}}</h4>
+            <h5>Summoner's Rift</h5>
+            <p>{{match.info.gameMode}}</p>
+        </div>
+        <div class="items">
+            <img src="{{match.info.participants[0].item0}}" alt="">
+            <img src="{{match.info.participants[0].item1}}" alt="">
+            <img src="{{match.info.participants[0].item2}}" alt="">
+            <img src="{{match.info.participants[0].item3}}" alt="">
+            <img src="{{match.info.participants[0].item4}}" alt="">
+            <img src="{{match.info.participants[0].item5}}" alt="">
+            <img src="{{match.info.participants[0].item6}}" alt="">
+        </div>
+        <div class="kda-wrapper">
+            <span>{{montaKDA(match.info.participants[0])}}</span>
+        </div>
+        <div class="farm-wrapper">
+            <span>{{formataGold(match.info.participants[0].goldEarned)}}</span>
+            <span>{{match.info.participants[0].totalMinionsKilled}} minions</span>
+        </div>
+        <div class="match-time-wrapper">
+            <span>{{formatarTempo(match.info.gameDuration)}}</span>
+            <span>{{converterDataUnixParaNormal(match.info.gameStartTimestamp)}}</span>
+        </div>
+    </div>
+</main>

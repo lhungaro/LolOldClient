@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpBackend, HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { map } from 'rxjs/operators';
@@ -6,7 +6,10 @@ import { map } from 'rxjs/operators';
 
 export class AccountService{
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private httpBackEnd: HttpBackend
+    ) {}
 
   private baseUrl = 'https://localhost:7213/'
 
@@ -35,6 +38,10 @@ export class AccountService{
     var url = this.baseUrl + `GetChampions`;
     
     return this.http.get<any>(url);
+  }
+
+  public getMatchInformations(): Observable<any>{
+    return this.http.get<any>('assets/matchInformationsMock.json');
   }
 
 }
