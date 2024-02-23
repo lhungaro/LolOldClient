@@ -13,22 +13,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class CampeoesComponent {
 
-<<<<<<< Updated upstream
   ordenacao: string = 'Alfabética';
   filtroChamp: any = "";
 
-  ordenarOpcoes(){
-    if (this.ordenacao === 'Alfabética'){
-      this.champions.sort();
-    }
-  }
-
-=======
->>>>>>> Stashed changes
   puuid: string = '5-9UAP0WP_BqWLHurxIjj1PprptYifhFeHfhWL5AHzQDJ4KiGgaspRtz8Zv7rf0ItIR_Zi2aBkH8zQ'
   champions: Champion[] = [];
   mastery!: Mastery[];
-
+  opcaoEscolhida: string = "";
   // Função para dividir o array em grupos de tamanho 'size'
   chunk(array:any, size:any) {
     const result = [];
@@ -55,9 +46,10 @@ export class CampeoesComponent {
   filtrarLista() {
     if(this.filtroChamp != ""){
       return this.mastery.filter(item => item.champName.toLowerCase().includes(this.filtroChamp.toLowerCase()));
-    }else{
+    }else if (this.opcaoEscolhida != ""){
+      return this.ordenarOpcoes(this.opcaoEscolhida)
+    }else
       return this.mastery;
-    }
   }
 
   GetChampions(){
@@ -94,18 +86,13 @@ export class CampeoesComponent {
       });
   }
 
-
-  opcaoEscolhida: string = 'Alfabetica';
-
   ordenarOpcoes(opcao: string){
-
     switch (opcao){
-
-    case 'Alfabética':
-      this.champions.sort((a , b) => a.name.localeCompare(b.name));
-      break;
-
+      case 'Alfabetica':
+        let _champions = this.mastery.sort((a , b) => a.champName.localeCompare(b.champName));
+        return _champions;
     }
+    return this.mastery
   }
 
 }

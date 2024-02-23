@@ -249,20 +249,43 @@ namespace LolWebAPI.Services
             return null;
         }
 
-        public async Task<List<Matche>> GetMatchesInformationsByMatchId(List<string> matchesIds)
+        private async Task<List<Matche>> GetMatchesInformationsByMatchId(List<string> matchesIds)
         {
-            List<Task<Matche>> matchTasks = new List<Task<Matche>>();
+            const int maxParallelism = 5; // Define o número máximo de chamadas simultâneas
+
+            var semaphore = new SemaphoreSlim(maxParallelism, maxParallelism);
+            var matchTasks = new List<Task<Matche>>();
 
             foreach (var matchId in matchesIds)
             {
-                matchTasks.Add(GetMatchInformationAsync(matchId));
+                await semaphore.WaitAsync(); 
+                matchTasks.Add(Task.Run(async () =>
+                {
+                    try
+                    {
+                        string urlMatch = $"{_baseUrl}/lol/match/v5/matches/{matchId}?api_key={_apiKey}";
+                        HttpResponseMessage responseMatch = await httpClient.GetAsync(urlMatch);
+
+                        if (responseMatch.IsSuccessStatusCode)
+                        {
+                            string responseBodyMatch = await responseMatch.Content.ReadAsStringAsync();
+                            return JsonConvert.DeserializeObject<Matche>(responseBodyMatch);
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Failed to get match. Status code: {responseMatch.StatusCode}");
+                            return null;
+                        }
+                    }
+                    finally
+                    {
+                        semaphore.Release();
+                    }
+                }));
             }
 
-            await Task.WhenAll(matchTasks);
-
-            var matches = matchTasks.Select(t => t.Result).ToList();
-
-            return matches; 
+            var matches = await Task.WhenAll(matchTasks);
+            return matches.ToList();
         }
 
         private async Task<Matche> GetMatchInformationAsync(string matchId)
