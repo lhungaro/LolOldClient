@@ -1,8 +1,8 @@
+import { Mastery } from './../models/mastery';
+import { Champion } from './../models/champion';
 import { Component, NgModule } from '@angular/core';
 import { AccountService } from '../services/account.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Champion } from '../models/champion';
-import { Mastery } from '../models/mastery';
 import { FormsModule } from '@angular/forms';
 
 
@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class CampeoesComponent {
 
+<<<<<<< Updated upstream
   ordenacao: string = 'Alfabética';
   filtroChamp: any = "";
 
@@ -22,6 +23,8 @@ export class CampeoesComponent {
     }
   }
 
+=======
+>>>>>>> Stashed changes
   puuid: string = '5-9UAP0WP_BqWLHurxIjj1PprptYifhFeHfhWL5AHzQDJ4KiGgaspRtz8Zv7rf0ItIR_Zi2aBkH8zQ'
   champions: Champion[] = [];
   mastery!: Mastery[];
@@ -35,7 +38,9 @@ export class CampeoesComponent {
     return result;
   }
 
+
   constructor(
+
     private accountService: AccountService,
     private spinner: NgxSpinnerService) {  }
 
@@ -89,5 +94,20 @@ export class CampeoesComponent {
       });
   }
 
+
+  opcaoEscolhida: string = 'Alfabetica';
+
+  ordenarOpcoes(opcao: string){
+
+    switch (opcao){
+
+    case 'Alfabética':
+      this.champions.sort((a , b) => a.name.localeCompare(b.name));
+      break;
+
+    }
+  }
+
 }
+
 

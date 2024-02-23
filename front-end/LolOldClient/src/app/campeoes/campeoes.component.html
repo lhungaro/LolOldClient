@@ -4,8 +4,8 @@
 
     <div>
       <label for="Ordem">Ordem</label>
-      <select id="Ordem" name="Ordem" (change)="ordenarOpcoes()">
-        <option value="Alfabética">Alfabética</option>
+      <select id="Ordem" name="Ordem" [(ngModel)]="opcaoEscolhida"  (ngModelChange)="ordenarOpcoes(opcaoEscolhida)">
+        <option value="Alfabetica">Alfabética</option>
         <option value="Maestria">Maestria</option>
         <option value="WinRate">WinRate</option>
         <option value="Bau-disponivel">Baú dispolnivel</option>
