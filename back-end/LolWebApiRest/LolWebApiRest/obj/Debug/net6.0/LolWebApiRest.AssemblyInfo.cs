@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LolWebApiRest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6bb05ae7c5343f77637de0b3900c698ecbfeae3e")]
 [assembly: System.Reflection.AssemblyProductAttribute("LolWebApiRest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LolWebApiRest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

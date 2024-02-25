@@ -15,11 +15,23 @@ export class CampeoesComponent {
 
   ordenacao: string = 'Alfabética';
   filtroChamp: any = "";
+  filtrobau: string = "false";
+  Tanque : string = "Tank";
+  Lutador : string = "Fighter";
+  Mage :string = "Mage";
+  Assassin :string = "Assassin";
+  Marksman :string = "Marksman";
+  Support :string = "Support";
+
+
+
 
   puuid: string = '5-9UAP0WP_BqWLHurxIjj1PprptYifhFeHfhWL5AHzQDJ4KiGgaspRtz8Zv7rf0ItIR_Zi2aBkH8zQ'
   champions: Champion[] = [];
   mastery!: Mastery[];
   opcaoEscolhida: string = "";
+  classeEscolhida: string = "";
+
   // Função para dividir o array em grupos de tamanho 'size'
   chunk(array:any, size:any) {
     const result = [];
@@ -48,7 +60,10 @@ export class CampeoesComponent {
       return this.mastery.filter(item => item.champName.toLowerCase().includes(this.filtroChamp.toLowerCase()));
     }else if (this.opcaoEscolhida != ""){
       return this.ordenarOpcoes(this.opcaoEscolhida)
-    }else
+    }else if(this.classeEscolhida != ""){
+      return this.classeChamp(this.classeEscolhida)
+    }
+    else
       return this.mastery;
   }
 
@@ -88,13 +103,55 @@ export class CampeoesComponent {
 
   ordenarOpcoes(opcao: string){
     switch (opcao){
+
       case 'Alfabetica':
         let _champions = this.mastery.sort((a , b) => a.champName.localeCompare(b.champName));
         return _champions;
+
+      case 'Maestria':
+        let _masterys = this.mastery.sort((a , b) =>{
+        if(a.championLevel !== undefined && b.championLevel !== undefined){
+          return b.championLevel.localeCompare(a.championLevel)
+        }
+        return 0;
+      });
+
+        return _masterys;
+
+        case 'Bau-disponivel':
+          if(this.filtrobau == "false"){
+            return this.mastery.filter(item => item.chestGranted && item.chestGranted.includes(this.filtrobau));
+
+          }
+        break;
+
+
+      }
+    return this.mastery
+  }
+
+  classeChamp(opcaoChamp: string){
+
+
+    switch(opcaoChamp){
+      case 'Todos':
+
+      break;
+
+      case 'Tank':
+
+        if(this.Tanque === "Tank"){
+          return this.mastery.filter(item =>  item.tags.includes("Tank"));
+
+        }
+      break;
+
+
     }
     return this.mastery
   }
 
-}
 
+
+}
 
