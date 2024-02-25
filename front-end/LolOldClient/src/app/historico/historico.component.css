@@ -1,6 +1,7 @@
 main{
     width: 100%;
     height: 100%;
+    overflow-y: scroll;
 }
 
 *{
@@ -9,6 +10,7 @@ main{
 
 .items{
     margin-left: 2rem;
+    width: 287px;
 }
 
 .items img{

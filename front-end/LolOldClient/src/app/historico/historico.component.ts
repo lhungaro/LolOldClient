@@ -17,6 +17,8 @@ export class HistoricoComponent {
 
   matchs: Match[] =[];
   match!: Match;
+  piuud = 'vYOv-b761KU2zv6nvSrcsf0oueW9wowjsHHx8NP8j7azWl0MztXIkpsB3PRYWaAGXfMbFmz0e9yjsg';
+
 
   ngOnInit(){
     this.GetMatchs();
@@ -24,7 +26,7 @@ export class HistoricoComponent {
 
   GetMatchs(){
     this.spinner.show();
-    this.accountService.getMatchInformations().subscribe({
+    this.accountService.getMatchInformations(this.piuud).subscribe({
       next: (_matchs:Match[]) => {
         this.matchs = _matchs;
         console.log("Sucesso");

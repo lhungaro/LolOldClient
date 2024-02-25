@@ -1,12 +1,12 @@
 <main>
-    <div class="match-wrapper">
+    <div class="match-wrapper" *ngFor="let match of matchs">
         <div class="status-wrapper" [ngClass]="{ 'victory': match.info.participants[0].win, 'defeat': !match.info.participants[0].win}"></div>
 
         <div class="participant-wrapper">
            <img src="{{match.info.participants[0].championImage}}" alt=""> 
            <div class="summoners-wrapper">
-            <img src="{{match.info.participants[0].summoner1Key}}" alt=""> 
-            <img src="{{match.info.participants[0].summoner2Key}}" alt=""> 
+            <img src="{{match.info.participants[0].summoner1Image}}" alt=""> 
+            <img src="{{match.info.participants[0].summoner2Image}}" alt=""> 
            </div>
         </div>
 
@@ -16,13 +16,13 @@
             <p>{{match.info.gameMode}}</p>
         </div>
         <div class="items">
-            <img src="{{match.info.participants[0].item0}}" alt="">
-            <img src="{{match.info.participants[0].item1}}" alt="">
-            <img src="{{match.info.participants[0].item2}}" alt="">
-            <img src="{{match.info.participants[0].item3}}" alt="">
-            <img src="{{match.info.participants[0].item4}}" alt="">
-            <img src="{{match.info.participants[0].item5}}" alt="">
-            <img src="{{match.info.participants[0].item6}}" alt="">
+            <img src="{{match.info.participants[0].item0Image}}" alt="">
+            <img src="{{match.info.participants[0].item1Image}}" alt="">
+            <img src="{{match.info.participants[0].item2Image}}" alt="">
+            <img src="{{match.info.participants[0].item3Image}}" alt="">
+            <img src="{{match.info.participants[0].item4Image}}" alt="">
+            <img src="{{match.info.participants[0].item5Image}}" alt="">
+            <img src="{{match.info.participants[0].item6Image}}" alt="">
         </div>
         <div class="kda-wrapper">
             <img src="../../assets/vs.png" alt="">

@@ -1,4 +1,5 @@
 ﻿using LolWebAPI.Models;
+using LolWebApiRest.Constants;
 using LolWebApiRest.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.FileSystemGlobbing;
@@ -19,6 +20,8 @@ namespace LolWebAPI.Services
         private readonly string _urlChampionsList;
         private readonly string _urlChampionsImage;
         private readonly string _urlIconsImage;
+        private readonly string _urlSpeelImage;
+        private readonly string _urlItemImage;
 
         public LolService(IConfiguration configuration)
         {
@@ -28,7 +31,9 @@ namespace LolWebAPI.Services
             _urlChampionsList = configuration.GetValue<string>("AppSettings:urlChampionsList");
             _urlChampionsImage = configuration.GetValue<string>("AppSettings:urlChampionImage");
             _urlIconsImage = configuration.GetValue<string>("AppSettings:urlIconsImage");
-            
+            _urlSpeelImage = configuration.GetValue<string>("AppSettings:urlSpeelImage");
+            _urlItemImage = configuration.GetValue<string>("AppSettings:urlItemImage");
+
             httpClient = new HttpClient();
         }
 
@@ -236,7 +241,25 @@ namespace LolWebAPI.Services
 
                     //Buscando informações de cada partida separadamente
 
-                    return await GetMatchesInformationsByMatchId(matchesIds);
+                    var matchs = await GetMatchesInformationsByMatchId(matchesIds);
+
+                    var matchsOrdenadas = new List<Matche>();
+
+                    matchs.ForEach(match => {
+                        var participant = match.info.participants.FirstOrDefault(p => p.puuid == puuid);
+                        if (participant != null)
+                        {
+                            match.info.participants.Remove(participant);
+                            match.info.participants.Insert(0, participant);
+                            participant.summoner1Image = SerializaSummonerSpell(participant.summoner1Id);
+                            participant.summoner2Image = SerializaSummonerSpell(participant.summoner2Id);
+                            participant.championImage = _urlChampionsImage + participant.championName + ".png";
+                            SerializaItens(participant);
+                        }
+
+                    });
+
+                    return matchs;
 
                 }
                 catch (Exception ex)
@@ -247,6 +270,17 @@ namespace LolWebAPI.Services
 
             // Return null if there is an issue or if username is empty
             return null;
+        }
+
+        private void SerializaItens(Participant participant)
+        {
+            participant.item0Image = participant.item0.ToString() != "" ? _urlItemImage + participant.item0.ToString() + ".png" : "";
+            participant.item1Image = participant.item0.ToString() != "" ?_urlItemImage + participant.item1.ToString() + ".png" : "";
+            participant.item2Image = participant.item0.ToString() != "" ?_urlItemImage + participant.item2.ToString()  + ".png": "";
+            participant.item3Image = participant.item0.ToString() != "" ?_urlItemImage + participant.item3.ToString() + ".png": "";
+            participant.item4Image = participant.item0.ToString() != "" ?_urlItemImage + participant.item4.ToString() + ".png": "";
+            participant.item5Image = participant.item0.ToString() != "" ?_urlItemImage + participant.item5.ToString() + ".png": "";
+            participant.item6Image = participant.item0.ToString() != "" ?_urlItemImage + participant.item6.ToString() + ".png": "";
         }
 
         private async Task<List<Matche>> GetMatchesInformationsByMatchId(List<string> matchesIds)
@@ -339,7 +373,63 @@ namespace LolWebAPI.Services
             // Return null if there is an issue or if username is empty
             return null;
         }
-        
+
+        private string SerializaSummonerSpell(int summoner1Id)
+        {
+            switch (summoner1Id)
+            {
+                case (int)SummonersSpellEnum.SummonerBarrier:
+                    return _urlSpeelImage + "SummonerBarrier" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerDot:
+                    return _urlSpeelImage + "SummonerDot" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerCherryFlash:
+                    return _urlSpeelImage + "SummonerCherryFlash" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerCherryHold:
+                    return _urlSpeelImage + "SummonerCherryHold" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerBoost:
+                    return _urlSpeelImage + "SummonerBoost" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerExhaust:
+                    return _urlSpeelImage + "SummonerExhaust" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerFlash:
+                    return _urlSpeelImage + "SummonerFlash" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerHaste:
+                    return _urlSpeelImage + "SummonerHaste" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerHeal:
+                    return _urlSpeelImage + "SummonerHeal" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerMana:
+                    return _urlSpeelImage + "SummonerMana" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerPoroRecall:
+                    return _urlSpeelImage + "SummonerPoroRecall" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerPoroThrow:
+                    return _urlSpeelImage + "SummonerPoroThrow" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerSmite:
+                    return _urlSpeelImage + "SummonerSmite" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerSnowURFSnowball_Mark:
+                    return _urlSpeelImage + "SummonerSnowURFSnowball_Mark" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerSnowball:
+                    return _urlSpeelImage + "SummonerSnowball" + ".png";
+
+                case (int)SummonersSpellEnum.SummonerTeleport:
+                    return _urlSpeelImage + "SummonerTeleport" + ".png";
+
+                default:
+                    return "";
+            }
+        }
 
 
     }

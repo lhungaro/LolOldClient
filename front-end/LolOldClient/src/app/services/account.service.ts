@@ -40,8 +40,14 @@ export class AccountService{
     return this.http.get<any>(url);
   }
 
-  public getMatchInformations(): Observable<any>{
-    return this.http.get<any>('assets/matchInformationsMock.json');
+  // public getMatchInformations(): Observable<any>{
+  //   return this.http.get<any>('assets/matchInformationsMock.json');
+  // }
+
+  public getMatchInformations(piuuid:string): Observable<any>{
+    var url = this.baseUrl + `GetMatchesInformations/${piuuid}`;
+    return this.http.get<any>(url);
+
   }
 
 }

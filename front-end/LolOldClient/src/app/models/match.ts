@@ -76,6 +76,13 @@ export interface Participant {
     item4: number;
     item5: number;
     item6: number;
+    item0Image: string;
+    item1Image: string;
+    item2Image: string;
+    item3Image: string;
+    item4Image: string;
+    item5Image: string;
+    item6Image: string;
     itemsPurchased: number;
     killingSprees: number;
     kills: number;
@@ -135,10 +142,10 @@ export interface Participant {
     subteamPlacement: number;
     summoner1Casts: number;
     summoner1Id: number;
-    summoner1Key: string;
+    summoner1Image: string;
     summoner2Casts: number;
     summoner2Id: number;
-    summoner2Key: string;
+    summoner2Image: string;
     summonerId: string;
     summonerLevel: number;
     summonerName: string;

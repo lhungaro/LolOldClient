@@ -29,7 +29,7 @@
         public string gameType { get; set; }
         public string gameVersion { get; set; }
         public int mapId { get; set; }
-        public Participant[] participants { get; set; }
+        public List<Participant> participants { get; set; }
         public string platformId { get; set; }
         public int queueId { get; set; }
         public Team[] teams { get; set; }
@@ -48,6 +48,7 @@
         public int champLevel { get; set; }
         public int championId { get; set; }
         public string championName { get; set; }
+        public string championImage { get; set; }
         public int championTransform { get; set; }
         public int commandPings { get; set; }
         public int consumablesPurchased { get; set; }
@@ -84,6 +85,13 @@
         public int item4 { get; set; }
         public int item5 { get; set; }
         public int item6 { get; set; }
+        public string item0Image { get; set; }
+        public string item1Image { get; set; }
+        public string item2Image { get; set; }
+        public string item3Image { get; set; }
+        public string item4Image { get; set; }
+        public string item5Image { get; set; }
+        public string item6Image { get; set; }
         public int itemsPurchased { get; set; }
         public int killingSprees { get; set; }
         public int kills { get; set; }
@@ -142,6 +150,8 @@
         public int spell4Casts { get; set; }
         public int subteamPlacement { get; set; }
         public int summoner1Casts { get; set; }
+        public string summoner1Image { get; set; }
+        public string summoner2Image { get; set; }
         public int summoner1Id { get; set; }
         public int summoner2Casts { get; set; }
         public int summoner2Id { get; set; }
