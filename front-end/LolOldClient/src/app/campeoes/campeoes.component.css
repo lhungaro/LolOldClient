@@ -75,6 +75,7 @@ main div div select{
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 3;
 }
 
 .champ{
@@ -91,6 +92,13 @@ main div div select{
   color: #55331a;
   margin-bottom: 1rem;
 }
+
+.Bau-disponivel{
+  position:absolute;
+  z-index: 4;
+  width: 4rem;
+}
+
 
 .maestria-background{
   width: 3rem;

@@ -5,6 +5,7 @@
     <div>
       <label for="Ordem">Ordem</label>
       <select id="Ordem" name="Ordem" [(ngModel)]="opcaoEscolhida">
+        <option value="Normal"></option>
         <option value="Alfabetica">Alfabética</option>
         <option value="Maestria">Maestria</option>
         <option value="WinRate">WinRate</option>
@@ -14,7 +15,7 @@
 
     <div>
       <label for="Funcao">Função primaria</label>
-      <select id="Funcao" name="Funcao">
+      <select id="Funcao" name="Funcao" [(ngModel)]="classeEscolhida">
         <option value="Todos">Todos</option>
         <option value="Tank">Tank</option>
         <option value="Mago">Mago</option>
@@ -42,10 +43,19 @@
     <div *ngFor="let champion of filtrarLista()"  class="grid-item">
       <div class="champ-container">
         <div class="imagem-campeao">
+
           <div class="champ" [ngStyle]="{ 'background-image': 'url(' + champion.champUrlImg + ')' }">
-            <img class="imagem-campeao" src="../../assets/Maestria/borda-maestria6.png">
+            <img class="Bau-disponivel" *ngIf="champion.chestGranted =='true' "src="../../assets/Maestria/borda-com-bau.png">
+            <img class="imagem-campeao" *ngIf="champion.championLevel == '7'" src="../../assets/Maestria/borda-maestria7.png">
+            <img class="imagem-campeao" *ngIf="champion.championLevel == '6'" src="../../assets/Maestria/borda-maestria6.png">
+            <img class="imagem-campeao" *ngIf="champion.championLevel == '5'" src="../../assets/Maestria/borda-maestria5.png">
+            <img class="imagem-campeao" *ngIf="champion.championLevel == '4'" src="../../assets/Maestria/borda-maestria4.png">
+            <img class="imagem-campeao" *ngIf="champion.championLevel == '3'" src="../../assets/Maestria/borda-maestria3.png">
+            <img class="imagem-campeao" *ngIf="champion.championLevel == '2'" src="../../assets/Maestria/borda-maestria2.png">
+            <img class="imagem-campeao" *ngIf="champion.championLevel == '1'" src="../../assets/Maestria/borda-maestria1.png">
+            <img class="imagem-campeao" *ngIf="champion.championLevel == '0'" src="../../assets/Maestria/borda-maestria.png">
             <!-- arrumar borda do bau para ficar emcima da borda da maestria -->
-            <!-- <img class="imagem-campeao" src="../../assets/Maestria/borda-com-bau.png"> -->
+
           </div>
         </div>
         <div class="champName">
