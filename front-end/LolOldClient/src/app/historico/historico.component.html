@@ -11,7 +11,7 @@
         </div>
 
         <div class="match-informations-wrapper">
-            <h4>{{verificaSeStatus(match.info.participants[0].win)}}</h4>
+            <h4 [ngClass]="{ 'victoryFont': match.info.participants[0].win, 'defeatFont': !match.info.participants[0].win}">{{verificaSeStatus(match.info.participants[0].win)}}</h4>
             <h5>Summoner's Rift</h5>
             <p>{{match.info.gameMode}}</p>
         </div>
@@ -25,15 +25,22 @@
             <img src="{{match.info.participants[0].item6}}" alt="">
         </div>
         <div class="kda-wrapper">
+            <img src="../../assets/vs.png" alt="">
             <span>{{montaKDA(match.info.participants[0])}}</span>
         </div>
         <div class="farm-wrapper">
-            <span>{{formataGold(match.info.participants[0].goldEarned)}}</span>
-            <span>{{match.info.participants[0].totalMinionsKilled}} minions</span>
+            <div class="farm-info">
+                <span>{{formataGold(match.info.participants[0].goldEarned)}}</span>
+                <span>{{match.info.participants[0].totalMinionsKilled}}</span>
+            </div>
+            <div class="farm-icons">
+                <img src="../../assets/gold.png" alt="">
+                <img style="margin-left: 0.3rem;" src="../../assets/minion.png" alt="">
+            </div>
         </div>
         <div class="match-time-wrapper">
-            <span>{{formatarTempo(match.info.gameDuration)}}</span>
-            <span>{{converterDataUnixParaNormal(match.info.gameStartTimestamp)}}</span>
+            <span style="font-size: 0.9rem;">{{formatarTempo(match.info.gameDuration)}}</span>
+            <span style="font-size: 0.7rem;margin-top: 0.3rem;">{{converterDataUnixParaNormal(match.info.gameStartTimestamp)}}</span>
         </div>
     </div>
 </main>

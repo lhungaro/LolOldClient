@@ -3,6 +3,14 @@ main{
     height: 100%;
 }
 
+*{
+    font-family: 'Lato';
+}
+
+.items{
+    margin-left: 2rem;
+}
+
 .items img{
     width: 2.5rem;
     border-radius: 3px;
@@ -30,6 +38,13 @@ main{
 .victory{
     background-color: green;
 }
+.defeatFont{
+    color: red;
+}
+
+.victoryFont{
+    color: green;
+}
 
 .participant-wrapper{
     display: flex;
@@ -38,8 +53,23 @@ main{
 .match-informations-wrapper{
     margin-left: 1rem;
     margin-right: 1rem;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
 }
 
+.match-informations-wrapper h4{
+    font-size: 1.1rem;
+    font-weight: 400;
+}
+.match-informations-wrapper h5{
+    font-size: 1.0rem;
+    font-weight: 400;
+}
+.match-informations-wrapper p{
+    font-size: 0.8rem;
+    font-weight: 400;
+}
 .participant-wrapper img{
     margin-right: 0.1rem;
     width: 3.5rem;
@@ -63,16 +93,36 @@ main{
 .match-time-wrapper{
     display: flex;
     flex-direction: column;
-    margin-left: 1rem;
+    margin-left: 2.5rem;
     align-items: center;
 }
 
 .farm-wrapper{
-    margin-left: 1rem;
+    margin-left: 2.5rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 .kda-wrapper{
-    margin-left: 1rem;
+    margin-left: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+span{
+    font-size: 0.8rem;
+}
+
+.farm-wrapper .farm-info,.farm-wrapper .farm-icons {
+    display: flex;
+    justify-content: center;
+    gap: 0.1rem;
+    flex-direction: column;
+}
+.farm-wrapper .farm-info{
+    align-items: flex-end;
+}
+.farm-wrapper .farm-icons{
+    align-items: flex-start;
 }
