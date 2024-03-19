@@ -88,3 +88,147 @@ main{
     border: solid 1px #c5a758;
     border-top: none;
 }
+
+.gif {
+    width: 100%; /* Defina a largura desejada */
+    pointer-events: none; /* Isso evita que os controles apareçam ao passar o mouse sobre o vídeo */
+}
+
+.gif::-webkit-media-controls {
+display: none !important;
+}
+
+.borders{
+    margin:none;
+    padding: 0rem;
+    width: 1152px;
+}
+.borders:last-child{
+    height: 2.8rem;
+}
+
+.background-video{
+    position: relative;
+    background-color: black;
+}
+
+.login-card{
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login-card img{
+    width: 75%;
+}
+
+form{
+    background-color: rgb(0, 0, 0, 0.8);
+    width: 75%;
+    height: 45%;
+    border: 2px solid #757382;
+    border-radius: 3px;
+}
+
+form p{
+    padding: 1rem 0rem 0.5rem 1rem;
+    color: #fff;
+}
+form label{
+    color: #fff;
+}
+
+form .divider{
+    height: 1px;
+    width: 90%;
+    background: rgb(117,115,130);
+    background: linear-gradient(90deg, rgba(117,115,130,0) 0%, rgba(117,115,130,0.5298494397759104) 19%, rgba(117,115,130,0.8155637254901961) 40%, rgba(117,115,130,0.835171568627451) 63%, rgba(117,115,130,0.3785889355742297) 86%, rgba(117,115,130,0) 100%);
+}
+
+form .inputs{
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+form .buttons{
+    margin-top: 0.5rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+form .options{  
+    display: flex;
+    color: #317ec2;
+}
+form .options p{  
+    padding: 0rem 0rem 0.5rem 0rem;
+}
+
+span{
+    color: #c5a758;
+}
+
+h5{
+    margin-top: 0.5rem;
+    color: #fff;
+    font-weight:500 ;
+}
+
+
+p, label, a{
+    font-size: 0.8rem;
+}
+button{
+    background: rgb(97,97,97);
+    background: linear-gradient(6deg, rgba(97,97,97,1) 0%, rgba(169,169,169,1) 100%);
+    border: 2px solid #94929e;
+    padding: 0.2rem 0.6rem 0.2rem 0.6rem;
+    border-radius: 2px;
+    color: #fff;
+}
+
+.buttonActive{
+    background: rgb(176,126,20);
+    background: linear-gradient(180deg, rgb(216, 157, 29) 0%, rgb(209, 108, 40) 50%, rgb(135, 34, 16) 100%);
+    border: 2px solid rgb(176,126,20);
+    cursor: pointer;
+}
+
+label{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.footer img{
+    width: 5rem;
+}
+
+.footer{
+    bottom: 0;
+}
+
+footer{
+    width: 100%;
+    height: 18rem;
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 3.5rem;
+    padding-left:1.5rem;
+}
+
+.footer-content{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 1rem;
+    color: #fff;
+}
+

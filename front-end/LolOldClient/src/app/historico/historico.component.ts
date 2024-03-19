@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AccountService } from '../services/account.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Match, Participant } from '../models/match';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-historico',
@@ -12,6 +13,7 @@ export class HistoricoComponent {
   
   constructor(
     private accountService:AccountService,
+    private route: ActivatedRoute,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -21,6 +23,9 @@ export class HistoricoComponent {
 
 
   ngOnInit(){
+    this.route.queryParams.subscribe(params => {
+      this.piuud = params['puuid'];
+    });
     this.GetMatchs();
   }
 

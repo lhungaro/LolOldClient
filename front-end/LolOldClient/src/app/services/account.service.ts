@@ -50,5 +50,10 @@ export class AccountService{
 
   }
 
+  public getAccountInformations(piuuid:string): Observable<any>{
+    var url = this.baseUrl + `GetAccountInformations/${piuuid}`;
+    return this.http.get<any>(url);
+  }
+
 }
 

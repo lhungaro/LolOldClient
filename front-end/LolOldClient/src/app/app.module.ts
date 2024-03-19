@@ -26,7 +26,7 @@ import { FormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgxSpinnerModule,
+    NgxSpinnerModule.forRoot({ type: 'ball-spin-clockwise' }),
     BrowserAnimationsModule,
     FormsModule
   ],

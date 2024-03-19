@@ -57,7 +57,7 @@ main div div select{
   grid-template-columns: repeat(10, 1fr); /* 10 colunas igualmente espaçadas */
   gap: 2px; /* espaçamento entre os itens */
   overflow-y: scroll;
-  max-height: 80%;
+  max-height: 91%;
   overflow-x: hidden;
   padding: 2rem;
 }
@@ -151,4 +151,29 @@ main div div select{
   background-image: url('../../assets/Maestria/borda-maestria.png');
 }
 
+::-webkit-scrollbar {
+  width: 14px; /* largura da barra de rolagem */
+  background: rgba(243,238,223,1);;
+  border: 2px solid #e3b557;
+}
 
+::-webkit-scrollbar-track {
+  background:#e3b557;
+  ; /* cor de fundo da barra de rolagem */
+  border: 1px solid #55331a;
+
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(243,238,223,1); /* cor do polegar da barra de rolagem */
+  border: 2px solid #e3b557;
+  border-style: border-box;
+
+
+}
+
+::-webkit-scrollbar-thumb:hover {
+  border: 1px solid #55331a;
+
+  background: rgba(243,238,223,1); /* cor do polegar da barra de rolagem quando o mouse passa por cima */
+}

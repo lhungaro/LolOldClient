@@ -4,6 +4,7 @@ import { Component, NgModule } from '@angular/core';
 import { AccountService } from '../services/account.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-campeoes',
@@ -21,8 +22,7 @@ export class CampeoesComponent {
   Marksman: string = 'Marksman';
   Support: string = 'Support';
 
-  puuid: string =
-    '5-9UAP0WP_BqWLHurxIjj1PprptYifhFeHfhWL5AHzQDJ4KiGgaspRtz8Zv7rf0ItIR_Zi2aBkH8zQ';
+  puuid: string ="";
   champions: Champion[] = [];
   todosCampeoes!: Mastery[];
   opcaoEscolhida: string = '';
@@ -39,16 +39,26 @@ export class CampeoesComponent {
 
   constructor(
     private accountService: AccountService,
+    private route: ActivatedRoute,
     private spinner: NgxSpinnerService
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      const parametro = params['puuid'];
+      this.puuid = params['puuid'];
+    });
+
+    if(this.puuid != "")
+      this.carregarCampeoes();
+  }
   carregarCampeoes() {
     this.GetChampions();
     this.GetMasterys();
   }
 
   filtrarLista(): Mastery[] {
+
     let campeoes: Mastery[] = [];
 
     if (this.filtroChamp != '') {
@@ -88,11 +98,10 @@ export class CampeoesComponent {
         this.champions = _account;
       },
       error: (error: any) => {
-        // this.spinner.hide();
+        this.spinner.hide();
         console.log('Erro ao carregar o Usuário', 'Erro!');
       },
       complete: () => {
-        this.spinner.hide();
       },
     });
   }

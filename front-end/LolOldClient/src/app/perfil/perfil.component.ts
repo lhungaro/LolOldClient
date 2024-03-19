@@ -7,6 +7,7 @@ import { QueueTypeEnum } from '../helpers/queueTypeEnum';
 import { RankEnum } from '../helpers/rankEnum';
 import { ICON_PATHS, Tier, rankIconMap } from '../helpers/icons.config';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -14,8 +15,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent {
-  username:string = "Ephemerus#BR1";
-  iconUrl:string = "https://ddragon.leagueoflegends.com/cdn/14.3.1/img/profileicon/588.png"
+  username:string = "";
+  iconUrl:string = ""
   urlChampion1:string = ""
   urlChampion2:string = ""
   urlChampion3:string = ""
@@ -25,70 +26,86 @@ export class PerfilComponent {
   championPoints1:string = ""
   championPoints2:string = ""
   championPoints3:string = ""
-  urlImgRankSolo:string= "../../assets/tier-icons/tier-icons/diamond_i.png"
-  urlImgRankTFT:string= "../../assets/tier-icons/tier-icons/diamond_i.png"
-  urlImgRankFlex:string= "../../assets/tier-icons/tier-icons/diamond_i.png"
-  elo:string = "Diamante I"
-  pdls:string = "87 PDL"
+  urlImgRankSolo:string= "../../assets/tier-icons/tier-icons/provisional.png"
+  urlImgRankTFT:string= "../../assets/tier-icons/tier-icons/provisional.png"
+  urlImgRankFlex:string= "../../assets/tier-icons/tier-icons/provisional.png"
+  elo:string = "Unranked"
+  pdls:string = ""
   account!: Account;
   mastery!: Mastery[];
   masterys: Mastery[] = [];
   ranks: Rank[] = [];
   rankSolo: Rank = {
     queueType: 'Ranked Solo/Duo',
-    tier: 'Diamond',
-    rank: 'II',
-    leaguePoints: '50',
+    tier: 'Unranked',
+    rank: '',
+    leaguePoints: '',
   };
   rankFlex: Rank = {
     queueType: 'Ranked Solo/Duo',
-    tier: 'Diamond',
-    rank: 'II',
-    leaguePoints: '50',
+    tier: 'Unranked',
+    rank: '',
+    leaguePoints: '',
   };
+  puuid :string ="";
+  accountInformations!: any;
 
   constructor(private accountService:AccountService,
+    private route: ActivatedRoute,
     private spinner: NgxSpinnerService) { }
 
   ngOnInit(){
-    this.GetUser();
+    this.route.queryParams.subscribe(params => {
+      const parametro = params['puuid'];
+      this.puuid = params['puuid'];
+      console.log(parametro); // Valor do parâmetro de consulta
+    });
+    this.showSpinner();
+    this.GetMasterys();
+    this.GetRank();
+    this.GetAccountInformations();
   }
 
-  GetUser(){
-    console.log(this.username);
+
+  showSpinner() {
     this.spinner.show();
-    if(this.username){
-
-      this.accountService.getIdAccountByNameBr(this.username).subscribe({
-        next: (_account:Account) => {
-          this.account = _account
-          console.log("Sucesso");
-          console.log(this.account);
-        },
-        error: (error:any) => {
-          // this.spinner.hide();
-          console.log('Erro ao carregar o Usuário','Erro!');
-        },
-         complete: () => {
-          if(this.account!= null){
-            this.GetMasterys();
-            this.GetRank();
-          }
-        }
-      });
-    }
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
   }
+
+  // GetUser(){
+  //   console.log(this.username);
+  //   this.spinner.show();
+  //   if(this.username){
+
+  //     this.accountService.getIdAccountByNameBr(this.username).subscribe({
+  //       next: (_account:Account) => {
+  //         this.account = _account
+  //         console.log("Sucesso");
+  //         console.log(this.account);
+  //       },
+  //       error: (error:any) => {
+  //         // this.spinner.hide();
+  //         console.log('Erro ao carregar o Usuário','Erro!');
+  //       },
+  //        complete: () => {
+  //         if(this.account!= null){
+       
+  //         }
+  //       }
+  //     });
+  //   }
+  // }
 
   GetMasterys(){
-    if(this.account!= null){
-      this.accountService.getMaestriasByPiuuId(this.account.puuid).subscribe({
+    if(this.puuid != ""){
+      this.accountService.getMaestriasByPiuuId(this.puuid).subscribe({
         next: (_mastery:Mastery[]) => {
           this.mastery = _mastery
-          console.log("Sucesso");
-          console.log(this.mastery);
         },
         error: (error:any) => {
-          // this.spinner.hide();
+          this.spinner.hide();
           console.log('Erro ao carregar as Maestrias','Erro!');
         },
          complete: () => {
@@ -99,16 +116,34 @@ export class PerfilComponent {
     }
   }
 
-  GetRank(){
-    if(this.account!= null){
-      this.accountService.getRankByPiuuId(this.account.puuid).subscribe({
-        next: (_rank:Rank[]) => {
-          this.ranks = _rank
-          console.log("Sucesso");
-          console.log(this.ranks);
+  GetAccountInformations(){
+    if(this.puuid != ""){
+      this.accountService.getAccountInformations(this.puuid).subscribe({
+        next: (_accountInformations: any) => {
+          this.accountInformations = _accountInformations
         },
         error: (error:any) => {
-          // this.spinner.hide();
+          this.spinner.hide();
+          console.log('Erro ao carregar as informações da conta','Erro!');
+        },
+         complete: () => {
+          this.username = this.accountInformations.name;
+          this.iconUrl = this.accountInformations.profileIconUrl;
+          console.log(this.accountInformations);
+          this.spinner.hide();
+        }
+      });
+    }
+  }
+
+  GetRank(){
+    if(this.puuid != ""){
+      this.accountService.getRankByPiuuId(this.puuid).subscribe({
+        next: (_rank:Rank[]) => {
+          this.ranks = _rank
+        },
+        error: (error:any) => {
+          this.spinner.hide();
           console.log('Erro ao carregar as Maestrias','Erro!');
         },
          complete: () => {
@@ -121,8 +156,6 @@ export class PerfilComponent {
   populaMasterys(){
     for(let i = 0; i < 3; i++){
       this.masterys.push(this.mastery[i]);
-      console.log(this.masterys[i].champName)
-      console.log(this.masterys[i].champUrlImg)
     }
 
     this.championName1 = this.mastery[0].champName ?? "";
